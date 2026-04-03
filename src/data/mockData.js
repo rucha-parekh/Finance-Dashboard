@@ -1,0 +1,80 @@
+export const CATEGORIES = {
+  Food:          { color: "#C0785A" },
+  Transport:     { color: "#5A8FE8" },
+  Shopping:      { color: "#8A72C8" },
+  Rent:          { color: "#C8A456" },
+  Health:        { color: "#4EAA78" },
+  Entertainment: { color: "#C8607A" },
+  Utilities:     { color: "#4AACCC" },
+  Salary:        { color: "#4EAA78" },
+  Freelance:     { color: "#7AAA44" },
+  Investment:    { color: "#C8B844" },
+};
+
+export const CATEGORY_BUDGETS = {
+  Food:          8000,
+  Transport:     3000,
+  Shopping:      5000,
+  Rent:          25000,
+  Health:        2000,
+  Entertainment: 3000,
+  Utilities:     2500,
+};
+
+// Per-month spending for budget history (used in InsightsPage month selector)
+export const MONTHLY_SPENDING = {
+  "2025-01": { Food: 5500, Transport: 1800, Shopping: 2200, Rent: 22000, Health: 800,  Entertainment: 1200, Utilities: 1900 },
+  "2025-02": { Food: 4800, Transport: 2100, Shopping: 3500, Rent: 22000, Health: 1100, Entertainment: 2200, Utilities: 2000 },
+  "2025-03": { Food: 5200, Transport: 2400, Shopping: 4100, Rent: 22000, Health: 600,  Entertainment: 2200, Utilities: 2100 },
+  "2025-04": { Food: 5500, Transport: 2320, Shopping: 5500, Rent: 22000, Health: 2760, Entertainment: 3950, Utilities: 1999 },
+};
+
+export const transactions = [
+  { id: 1,  date: "2025-04-01", description: "Swiggy Order",       amount: 450,   category: "Food",          type: "expense" },
+  { id: 2,  date: "2025-04-01", description: "Metro Card Recharge",amount: 500,   category: "Transport",     type: "expense" },
+  { id: 3,  date: "2025-04-02", description: "April Salary",       amount: 85000, category: "Salary",        type: "income"  },
+  { id: 4,  date: "2025-04-03", description: "Zomato Dinner",      amount: 780,   category: "Food",          type: "expense" },
+  { id: 5,  date: "2025-04-04", description: "Rent Payment",       amount: 22000, category: "Rent",          type: "expense" },
+  { id: 6,  date: "2025-04-05", description: "Amazon Shopping",    amount: 2300,  category: "Shopping",      type: "expense" },
+  { id: 7,  date: "2025-04-06", description: "Freelance Project",  amount: 15000, category: "Freelance",     type: "income"  },
+  { id: 8,  date: "2025-04-07", description: "Pharmacy",           amount: 560,   category: "Health",        type: "expense" },
+  { id: 9,  date: "2025-04-08", description: "Netflix",            amount: 649,   category: "Entertainment", type: "expense" },
+  { id: 10, date: "2025-04-09", description: "Electricity Bill",   amount: 1200,  category: "Utilities",     type: "expense" },
+  { id: 11, date: "2025-04-10", description: "Uber Ride",          amount: 320,   category: "Transport",     type: "expense" },
+  { id: 12, date: "2025-04-11", description: "Grocery Store",      amount: 1850,  category: "Food",          type: "expense" },
+  { id: 13, date: "2025-04-12", description: "Mutual Fund SIP",    amount: 5000,  category: "Investment",    type: "expense" },
+  { id: 14, date: "2025-04-13", description: "Dinner Out",         amount: 1100,  category: "Food",          type: "expense" },
+  { id: 15, date: "2025-04-14", description: "Myntra Sale",        amount: 3200,  category: "Shopping",      type: "expense" },
+  { id: 16, date: "2025-04-15", description: "Bonus Payout",       amount: 12000, category: "Salary",        type: "income"  },
+  { id: 17, date: "2025-04-16", description: "Gym Membership",     amount: 1500,  category: "Health",        type: "expense" },
+  { id: 18, date: "2025-04-17", description: "Movie Tickets",      amount: 800,   category: "Entertainment", type: "expense" },
+  { id: 19, date: "2025-04-18", description: "Petrol",             amount: 1500,  category: "Transport",     type: "expense" },
+  { id: 20, date: "2025-04-19", description: "Freelance Invoice",  amount: 8000,  category: "Freelance",     type: "income"  },
+  { id: 21, date: "2025-04-20", description: "Blinkit Groceries",  amount: 940,   category: "Food",          type: "expense" },
+  { id: 22, date: "2025-04-21", description: "Internet Bill",      amount: 799,   category: "Utilities",     type: "expense" },
+  { id: 23, date: "2025-04-22", description: "Doctor Visit",       amount: 700,   category: "Health",        type: "expense" },
+  { id: 24, date: "2025-04-23", description: "Concert Tickets",    amount: 2500,  category: "Entertainment", type: "expense" },
+  { id: 25, date: "2025-04-24", description: "Café Coffee",        amount: 380,   category: "Food",          type: "expense" },
+  { id: 26, date: "2025-03-02", description: "March Salary",       amount: 85000, category: "Salary",        type: "income"  },
+  { id: 27, date: "2025-03-05", description: "Rent Payment",       amount: 22000, category: "Rent",          type: "expense" },
+  { id: 28, date: "2025-03-10", description: "Food Expenses",      amount: 5200,  category: "Food",          type: "expense" },
+  { id: 29, date: "2025-03-15", description: "Freelance Work",     amount: 10000, category: "Freelance",     type: "income"  },
+  { id: 30, date: "2025-03-20", description: "Shopping Haul",      amount: 4100,  category: "Shopping",      type: "expense" },
+  { id: 31, date: "2025-03-25", description: "Utilities",          amount: 2100,  category: "Utilities",     type: "expense" },
+  { id: 32, date: "2025-03-28", description: "Entertainment",      amount: 2200,  category: "Entertainment", type: "expense" },
+  { id: 33, date: "2025-02-01", description: "Feb Salary",         amount: 85000, category: "Salary",        type: "income"  },
+  { id: 34, date: "2025-02-05", description: "Rent Payment",       amount: 22000, category: "Rent",          type: "expense" },
+  { id: 35, date: "2025-02-12", description: "Food & Dining",      amount: 4800,  category: "Food",          type: "expense" },
+  { id: 36, date: "2025-02-18", description: "Freelance",          amount: 6000,  category: "Freelance",     type: "income"  },
+  { id: 37, date: "2025-02-22", description: "Shopping",           amount: 3500,  category: "Shopping",      type: "expense" },
+  { id: 38, date: "2025-01-03", description: "Jan Salary",         amount: 85000, category: "Salary",        type: "income"  },
+  { id: 39, date: "2025-01-06", description: "Rent",               amount: 22000, category: "Rent",          type: "expense" },
+  { id: 40, date: "2025-01-15", description: "Food",               amount: 5500,  category: "Food",          type: "expense" },
+];
+
+export const monthlyTrend = [
+  { month: "Jan", income: 85000, expenses: 52000, balance: 33000 },
+  { month: "Feb", income: 91000, expenses: 48000, balance: 43000 },
+  { month: "Mar", income: 95000, expenses: 55000, balance: 40000 },
+  { month: "Apr", income: 120000, expenses: 61000, balance: 59000 },
+];
