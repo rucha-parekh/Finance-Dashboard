@@ -4,7 +4,7 @@ import { useApp } from "../context/AppContext";
 import { getTotals, formatCurrency, getMonthlyComparison } from "../utils/helpers";
 import { useCountUp } from "../hooks/useCountUp";
 
-function StatCard({ label, amount, icon: Icon, accent, delta, subtitle }) {
+function StatCard({ label, amount, icon: Icon, accent, delta, lastMonthAmount }) {
   const animated = useCountUp(amount, 1400);
 
   return (
@@ -22,7 +22,11 @@ function StatCard({ label, amount, icon: Icon, accent, delta, subtitle }) {
       </div>
       <div className="stat-amount">{formatCurrency(animated)}</div>
       <div className="stat-label">{label}</div>
-      {subtitle && <div className="stat-subtitle">{subtitle}</div>}
+      {lastMonthAmount !== undefined && (
+        <div className="stat-subtitle">
+          Last month: {formatCurrency(lastMonthAmount)}
+        </div>
+      )}
       <div className="stat-shine" />
     </div>
   );
@@ -31,33 +35,13 @@ function StatCard({ label, amount, icon: Icon, accent, delta, subtitle }) {
 export default function SummaryCards() {
   const { transactions } = useApp();
   const { income, expenses, balance } = getTotals(transactions);
-  const { delta } = getMonthlyComparison(transactions);
+  const { thisExp, lastExp, delta } = getMonthlyComparison(transactions);
 
   return (
     <div className="summary-cards">
-      <StatCard
-        label="Total Balance"
-        amount={balance}
-        icon={Wallet}
-        accent="#5ACA8A"
-        subtitle="Net this period"
-      />
-      <StatCard
-        label="Total Income"
-        amount={income}
-        icon={TrendingUp}
-        accent="#5A8FE8"
-        delta={8}
-        subtitle="vs last month"
-      />
-      <StatCard
-        label="Total Expenses"
-        amount={expenses}
-        icon={TrendingDown}
-        accent="#E8715A"
-        delta={delta}
-        subtitle="vs last month"
-      />
+      <StatCard label="Total Balance" amount={balance} icon={Wallet} accent="#4EAA78" />
+      <StatCard label="Total Income" amount={income} icon={TrendingUp} accent="#5A8FE8" delta={8} lastMonthAmount={95000} />
+      <StatCard label="Total Expenses" amount={expenses} icon={TrendingDown} accent="#C0785A" delta={delta} lastMonthAmount={lastExp} />
     </div>
   );
 }

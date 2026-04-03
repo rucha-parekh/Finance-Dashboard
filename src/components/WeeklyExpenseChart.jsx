@@ -63,6 +63,9 @@ export default function WeeklyExpenseChart() {
             {data.map((entry, i) => (
               <Cell key={i} fill={entry.amount === max ? "#C0785A" : "var(--indigo-lighter)"} />
             ))}
+            <p style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 8 }}>
+              Highlighted bar = highest spend week
+            </p>
           </Bar>
         </BarChart>
       </ResponsiveContainer>

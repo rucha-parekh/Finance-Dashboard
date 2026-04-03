@@ -78,35 +78,43 @@ export const filterTransactions = (txns, { search, category, type, sortBy, sortD
   let result = [...txns];
 
   // Smart search: "food last month", "expenses over 500"
-  if (search) {
-    const q = search.toLowerCase();
-    const overMatch = q.match(/over[^\d]*(\d+)/);
-    const catMatch = Object.keys(CATEGORIES).find((c) => q.includes(c.toLowerCase()));
+if (search) {
+  const q = search.toLowerCase();
+  const overMatch = q.match(/over[^\d]*(\d+)/);
+  const catMatch = Object.keys(CATEGORIES).find((c) => q.includes(c.toLowerCase()));
+  const isExpense = q.includes("expense");
+  const isIncome = q.includes("income");
 
-    if (overMatch) {
-      const threshold = parseInt(overMatch[1]);
-      result = result.filter((t) => t.amount > threshold);
-    } else if (catMatch && q.includes("last month")) {
-      const now = new Date();
-      const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-      result = result.filter((t) => {
-        const d = new Date(t.date);
-        return t.category === catMatch && d.getMonth() === prev.getMonth();
-      });
-    } else if (catMatch) {
-      result = result.filter((t) => t.category === catMatch);
-    } else if (q.includes("expense")) {
-      result = result.filter((t) => t.type === "expense");
-    } else if (q.includes("income")) {
-      result = result.filter((t) => t.type === "income");
-    } else {
-      result = result.filter(
-        (t) =>
-          t.description.toLowerCase().includes(q) ||
-          t.category.toLowerCase().includes(q)
-      );
-    }
+  if (overMatch) {
+    const threshold = parseInt(overMatch[1]);
+    result = result.filter((t) => {
+      const amountMatch = t.amount > threshold;
+      const typeMatch = isExpense ? t.type === "expense" : isIncome ? t.type === "income" : true;
+      const catFilter = catMatch ? t.category === catMatch : true;
+      return amountMatch && typeMatch && catFilter;
+    });
+  } else if (catMatch && q.includes("last month")) {
+    const dates = [...transactions].map((t) => t.date).sort();
+    const latest = new Date(dates[dates.length - 1]);
+    const prev = new Date(latest.getFullYear(), latest.getMonth() - 1, 1);
+    result = result.filter((t) => {
+      const d = new Date(t.date);
+      return t.category === catMatch && d.getMonth() === prev.getMonth();
+    });
+  } else if (catMatch) {
+    result = result.filter((t) => t.category === catMatch);
+  } else if (isExpense) {
+    result = result.filter((t) => t.type === "expense");
+  } else if (isIncome) {
+    result = result.filter((t) => t.type === "income");
+  } else {
+    result = result.filter(
+      (t) =>
+        t.description.toLowerCase().includes(q) ||
+        t.category.toLowerCase().includes(q)
+    );
   }
+}
 
   if (category && category !== "All") result = result.filter((t) => t.category === category);
   if (type && type !== "All") result = result.filter((t) => t.type === type);

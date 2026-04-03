@@ -14,7 +14,6 @@ export default function DashboardPage() {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="greeting">Good morning</p>
           <h1 className="page-title">Financial Overview</h1>
           {role === "admin" && (
             <p className="page-subtitle">

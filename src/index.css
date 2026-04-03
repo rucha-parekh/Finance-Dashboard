@@ -660,3 +660,7 @@ button, select, a, [role="button"], .txn-row, .heatmap-cell:not(.empty), .nav-ta
 .stat-card:nth-child(3) { animation: chartZoomIn 0.45s cubic-bezier(0.34,1.2,0.64,1) 0.19s both; }
 
 .page { animation: chartZoomIn 0.35s cubic-bezier(0.34,1.1,0.64,1) both; }
+
+.navbar * { cursor: pointer; }
+.navbar { cursor: default; }
+.nav-tab, .role-trigger, .theme-toggle, .user-chip { cursor: pointer; }
