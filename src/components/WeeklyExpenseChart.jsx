@@ -69,6 +69,9 @@ export default function WeeklyExpenseChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      <p style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 8, textAlign: "right" }}>
+        Highlighted bar = highest spend week
+      </p>
     </div>
   );
 }

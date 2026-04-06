@@ -104,10 +104,10 @@ export default function TransactionsPage() {
                 <th>Description</th>
                 <th>Category</th>
                 <th>Type</th>
-                <th className="th-sortable th-right" onClick={() => toggleSort("amount")}>
+                <th className="th-sortable th-right" style={{ width: 140 }} onClick={() => toggleSort("amount")}>
                   Amount <SortIcon field="amount" />
                 </th>
-                {role === "admin" && <th className="th-right">Actions</th>}
+                {role === "admin" && <th className="th-right" style={{ width: 90 }}>Actions</th>}
               </tr>
             </thead>
             <tbody>

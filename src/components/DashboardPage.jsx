@@ -5,7 +5,7 @@ import BalanceTrendChart from "./BalanceTrendChart";
 import SpendingBreakdown from "./SpendingBreakdown";
 import SpendHeatmap from "./SpendHeatmap";
 import WeeklyExpenseChart from "./WeeklyExpenseChart";
-import CategoryRankChart from "./CategoryRankChart";
+import CategoryRankChart from "./RunningBalanceChart";
 
 export default function DashboardPage() {
   const { role, setActiveTab } = useApp();

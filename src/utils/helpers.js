@@ -38,14 +38,12 @@ export const getHighestSpendingCategory = (txns) => {
 };
 
 export const getMonthlyComparison = (txns) => {
-  // Use the most recent month in the data, not today's date
   const dates = txns.map((t) => t.date).sort();
-  if (!dates.length) return { thisExp: 0, lastExp: 0, delta: 0 };
+  if (!dates.length) return { thisExp: 0, lastExp: 0, thisInc: 0, lastInc: 0, expDelta: 0, incDelta: 0 };
 
   const latest = new Date(dates[dates.length - 1]);
   const latestYear = latest.getFullYear();
   const latestMonth = latest.getMonth();
-
   const prevDate = new Date(latestYear, latestMonth - 1, 1);
 
   const thisMonth = txns.filter((t) => {
@@ -59,8 +57,13 @@ export const getMonthlyComparison = (txns) => {
 
   const thisExp = getTotals(thisMonth).expenses;
   const lastExp = getTotals(lastMonth).expenses;
-  const delta = lastExp > 0 ? ((thisExp - lastExp) / lastExp) * 100 : 0;
-  return { thisExp, lastExp, delta: Math.round(delta) };
+  const thisInc = getTotals(thisMonth).income;
+  const lastInc = getTotals(lastMonth).income;
+
+  const expDelta = lastExp > 0 ? Math.round(((thisExp - lastExp) / lastExp) * 100) : 0;
+  const incDelta = lastInc > 0 ? Math.round(((thisInc - lastInc) / lastInc) * 100) : 0;
+
+  return { thisExp, lastExp, thisInc, lastInc, expDelta, incDelta };
 };
 
 export const getHeatmapData = (txns) => {

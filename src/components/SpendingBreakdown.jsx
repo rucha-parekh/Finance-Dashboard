@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { useApp } from "../context/AppContext";
 import { formatCurrency } from "../utils/helpers";
 import { CATEGORIES, MONTHLY_SPENDING } from "../data/mockData";
 
@@ -42,23 +41,28 @@ export default function SpendingBreakdown() {
           ))}
         </select>
       </div>
+
       <div className="donut-layout">
-        <ResponsiveContainer width={180} height={180}>
-          <PieChart>
-            <Pie data={data} cx="50%" cy="50%" innerRadius={52} outerRadius={80}
-              paddingAngle={3} dataKey="value" strokeWidth={0}
-              animationBegin={100} animationDuration={800}>
-              {data.map((entry, i) => <Cell key={i} fill={entry.color} />)}
-            </Pie>
-            <Tooltip content={<CustomTooltip />} />
-          </PieChart>
-        </ResponsiveContainer>
+        <div className="donut-chart-wrap">
+          <ResponsiveContainer width="100%" height={200}>
+            <PieChart>
+              <Pie data={data} cx="50%" cy="50%" innerRadius={60} outerRadius={95}
+                paddingAngle={3} dataKey="value" strokeWidth={0}
+                animationBegin={100} animationDuration={800}>
+                {data.map((entry, i) => <Cell key={i} fill={entry.color} />)}
+              </Pie>
+              <Tooltip content={<CustomTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
         <div className="donut-legend">
           {data.map((d, i) => (
             <div key={i} className="legend-row">
               <span className="legend-dot" style={{ background: d.color }} />
               <span className="legend-cat">{d.name}</span>
-              <span className="legend-pct">{((d.value / total) * 100).toFixed(0)}%</span>
+              <span className="legend-pct">· {((d.value / total) * 100).toFixed(0)}%</span>
+              <span className="legend-amount">{formatCurrency(d.value)}</span>
             </div>
           ))}
         </div>

@@ -4,7 +4,7 @@ import { useApp } from "../context/AppContext";
 import { getTotals, formatCurrency, getMonthlyComparison } from "../utils/helpers";
 import { useCountUp } from "../hooks/useCountUp";
 
-function StatCard({ label, amount, icon: Icon, accent, delta, lastMonthAmount }) {
+function StatCard({ label, amount, icon: Icon, accent, delta, lastAmount, period }) {
   const animated = useCountUp(amount, 1400);
 
   return (
@@ -22,9 +22,9 @@ function StatCard({ label, amount, icon: Icon, accent, delta, lastMonthAmount })
       </div>
       <div className="stat-amount">{formatCurrency(animated)}</div>
       <div className="stat-label">{label}</div>
-      {lastMonthAmount !== undefined && (
+      {lastAmount !== undefined && (
         <div className="stat-subtitle">
-          Last month: {formatCurrency(lastMonthAmount)}
+          {period} · prev. {formatCurrency(lastAmount)}
         </div>
       )}
       <div className="stat-shine" />
@@ -35,13 +35,35 @@ function StatCard({ label, amount, icon: Icon, accent, delta, lastMonthAmount })
 export default function SummaryCards() {
   const { transactions } = useApp();
   const { income, expenses, balance } = getTotals(transactions);
-  const { thisExp, lastExp, delta } = getMonthlyComparison(transactions);
+  const { thisExp, lastExp, thisInc, lastInc, expDelta, incDelta } = getMonthlyComparison(transactions);
 
   return (
     <div className="summary-cards">
-      <StatCard label="Total Balance" amount={balance} icon={Wallet} accent="#4EAA78" />
-      <StatCard label="Total Income" amount={income} icon={TrendingUp} accent="#5A8FE8" delta={8} lastMonthAmount={95000} />
-      <StatCard label="Total Expenses" amount={expenses} icon={TrendingDown} accent="#C0785A" delta={delta} lastMonthAmount={lastExp} />
+      <StatCard
+        label="Net Balance"
+        amount={balance}
+        icon={Wallet}
+        accent="#4EAA78"
+        subtitle="All time"
+      />
+      <StatCard
+        label="Income · Apr 2025"
+        amount={thisInc}
+        icon={TrendingUp}
+        accent="#5A8FE8"
+        delta={incDelta}
+        lastAmount={lastInc}
+        period="Apr 2025"
+      />
+      <StatCard
+        label="Expenses · Apr 2025"
+        amount={thisExp}
+        icon={TrendingDown}
+        accent="#C0785A"
+        delta={expDelta}
+        lastAmount={lastExp}
+        period="Apr 2025"
+      />
     </div>
   );
 }

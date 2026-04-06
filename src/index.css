@@ -208,12 +208,14 @@ body {
 .tooltip-row { display: flex; justify-content: space-between; gap: 16px; }
 
 /* Donut */
-.donut-layout { display: flex; align-items: center; gap: 16px; }
-.donut-legend { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.donut-chart-wrap { flex: 0 0 210px; }
+.donut-layout { display: flex; align-items: center; gap: 24px; width: 100%; }
+.donut-legend { flex: 1; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.legend-amount { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--text); white-space: nowrap; }
 .legend-row { display: flex; align-items: center; gap: 7px; font-size: 12px; }
-.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.legend-cat { flex: 1; color: var(--text); }
-.legend-pct { color: var(--text-muted); font-weight: 600; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.legend-cat { color: var(--text); white-space: nowrap; }
+.legend-pct { color: var(--text-muted); font-weight: 600; margin-left: 6px; }
 
 /* ── Heatmap ───────────────────────────────────────── */
 .heatmap-grid-wrap { display: flex; gap: 6px; }
@@ -332,10 +334,11 @@ body {
 .txn-table td { padding: 12px 16px; font-size: 13px; }
 .td-date { color: var(--text-muted); font-size: 12px; white-space: nowrap; }
 .td-desc { font-weight: 500; }
-.td-amount { text-align: right; font-family: var(--font-serif); font-weight: 700; }
 .td-amount.income { color: var(--accent-green); }
 .td-amount.expense { color: var(--accent-red); }
-.td-actions { text-align: right; }
+.td-amount { text-align: right; font-family: var(--font-serif); font-weight: 700; width: 140px; }
+.td-actions { text-align: right; width: 90px; vertical-align: middle; }
+.th-right { text-align: right; }
 
 .cat-chip {
   display: inline-flex; align-items: center; gap: 5px;
